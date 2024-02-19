@@ -47,11 +47,12 @@ $("#btn").click(function() {
 $("#tbtn").click(function() {
 	
 	$.ajax({
-		url:"http://localhost:9900/getlist",
+		//url:"http://localhost:9900/getlist",
+		url:"./human.json",
 		type:"get",
 		success:function(list) {
 			// alert("success");
-			// alert(JSON.stringify(list));
+			//alert(JSON.stringify(list));
 			
 			let datas = "";
 			
