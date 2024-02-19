@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+
+<p id="demo"></p>
+
+<button type="button" id="btn">hello</button>
+
+
+<script type="text/javascript">
+
+$("#btn").click(function() {
+    $.ajax({
+        url: "http://localhost:9900/",
+        type: "get",
+        success: function(data) {
+            $("#demo").text(data);
+        },
+        error: function() {
+            alert('error');
+        }
+    });
+});
+</script>
+<br/><br/>
+
+<table border="1">
+<col width="100"><col width="150"><col width="100">
+<thead>
+<tr>
+	<th>아이디</th><th>이름</th><th>신장</th>
+</tr>
+</thead>
+<tbody id="tbody">
+</tbody>
+</table>
+<br/>
+<button type="button" id="tbtn">데이터추가</button>
+
+<script type="text/javascript">
+$("#tbtn").click(function() {
+	
+	$.ajax({
+		url:"http://localhost:9900/getlist",
+		type:"get",
+		success:function(list) {
+			// alert("success");
+			// alert(JSON.stringify(list));
+			
+			let datas = "";
+			
+			for(i = 0; i < list.length; i++) {
+				datas += "<tr>";
+				datas += " <td>" + list[i].id + "</td>"
+				datas += " <td>" + list[i].name + "</td>"
+				datas += " <td>" + list[i].height + "</td>"
+				datas += "</tr>";
+			}
+			$("#tbody").append(datas);
+		},
+		error:function() {
+			alert("error");
+		}
+	})
+})
+</script>
+
+</body>
+</html>
